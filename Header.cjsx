@@ -16,19 +16,22 @@ Header = React.createClass
 
 	render: ->
 		<View style={styles.header}>
-			<TouchableHighlight style={{flex: 1}} onPress={@props.openLeft}>
-				<Image style={styles.img} source={require './img/list.png'}/>
-			</TouchableHighlight>
-			<TouchableHighlight style={{flex: 2.2}} onPress={@openSettings}>
-				<Text style={styles.text}>{'#'+ @props.name + ' \u25be'}</Text>
-			</TouchableHighlight>
-			<Text style={{flex: 6}}/>
-			<TouchableHighlight style={{flex: 1}} onPress={@openPinned}>
-				<Image style={styles.img} source={require './img/pinned.png'}/>
-			</TouchableHighlight>
-			<TouchableHighlight style={{flex: 1}} onPress={@props.openRight}>
-				<Image style={styles.img} source={require './img/people.png'}/>
-			</TouchableHighlight>
+			<View flexDirection='row'>
+				<TouchableHighlight onPress={@props.openLeft}>
+					<Image style={styles.img} source={require './img/list.png'}/>
+				</TouchableHighlight>
+				<TouchableHighlight onPress={@openSettings}>
+					<Text style={styles.text}>{'#'+ @props.name + ' \u25be'}</Text>
+				</TouchableHighlight>
+			</View>
+			<View flexDirection='row'>
+				<TouchableHighlight onPress={@openPinned}>
+					<Image style={styles.img} source={require './img/pinned.png'}/>
+				</TouchableHighlight>
+				<TouchableHighlight onPress={@props.openRight}>
+					<Image style={styles.img} source={require './img/people.png'}/>
+				</TouchableHighlight>
+			</View>
 	  </View>
 
 styles = StyleSheet.create
@@ -38,11 +41,13 @@ styles = StyleSheet.create
 		borderBottomColor: '#000000'
 		borderBottomWidth: 1
 		elevation: 5
+		justifyContent: 'space-between'
 	text:
 		color: '#FFFFFF'
 		padding: 12
 	img:
-		marginLeft: 10
+		marginLeft: 6
+		marginRight: 6
 		marginTop: 15
 		height: 15
 		width: 15

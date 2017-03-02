@@ -103,6 +103,18 @@
     closeRight: function() {
       return this.rightDrawer.close();
     },
+    retrieveChannel: function() {
+      var channel;
+      if (this.state.selectedChannel === this.state.channels.length) {
+        channel = {
+          name: 'whiteboard',
+          messages: []
+        };
+        return channel;
+      } else {
+        return this.state.channels[this.state.selectedChannel];
+      }
+    },
     render: function() {
       if (this.state.users.length > 0 && this.state.channels.length > 0) {
         return React.createElement(Drawer, {
@@ -162,8 +174,9 @@
           })(this)),
           "side": 'right'
         }, React.createElement(ChatFeed, {
+          "whiteboard": this.state.selectedChannel === this.state.channels.length,
           "users": this.state.users,
-          "channel": this.state.channels[this.state.selectedChannel],
+          "channel": this.retrieveChannel(),
           "openLeft": this.openLeft,
           "openRight": this.openRight,
           "navigator": this.props.navigator,

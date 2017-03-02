@@ -24,42 +24,30 @@
     render: function() {
       return React.createElement(View, {
         "style": styles.header
+      }, React.createElement(View, {
+        "flexDirection": 'row'
       }, React.createElement(TouchableHighlight, {
-        "style": {
-          flex: 1
-        },
         "onPress": this.props.openLeft
       }, React.createElement(Image, {
         "style": styles.img,
         "source": require('./img/list.png')
       })), React.createElement(TouchableHighlight, {
-        "style": {
-          flex: 2.2
-        },
         "onPress": this.openSettings
       }, React.createElement(Text, {
         "style": styles.text
-      }, '#' + this.props.name + ' \u25be')), React.createElement(Text, {
-        "style": {
-          flex: 6
-        }
-      }), React.createElement(TouchableHighlight, {
-        "style": {
-          flex: 1
-        },
+      }, '#' + this.props.name + ' \u25be'))), React.createElement(View, {
+        "flexDirection": 'row'
+      }, React.createElement(TouchableHighlight, {
         "onPress": this.openPinned
       }, React.createElement(Image, {
         "style": styles.img,
         "source": require('./img/pinned.png')
       })), React.createElement(TouchableHighlight, {
-        "style": {
-          flex: 1
-        },
         "onPress": this.props.openRight
       }, React.createElement(Image, {
         "style": styles.img,
         "source": require('./img/people.png')
-      })));
+      }))));
     }
   });
 
@@ -69,14 +57,16 @@
       backgroundColor: '#222222',
       borderBottomColor: '#000000',
       borderBottomWidth: 1,
-      elevation: 5
+      elevation: 5,
+      justifyContent: 'space-between'
     },
     text: {
       color: '#FFFFFF',
       padding: 12
     },
     img: {
-      marginLeft: 10,
+      marginLeft: 6,
+      marginRight: 6,
       marginTop: 15,
       height: 15,
       width: 15

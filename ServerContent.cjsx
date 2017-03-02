@@ -31,7 +31,7 @@ ServerContent = React.createClass
 			elements: names.map @renderRow
 
 	selectChannel: (i) ->
-		@props.changeChannel(i)
+		@props.changeChannel i
 		@props.closeDrawer()
 
 	renderRow: (name, i) ->
@@ -61,6 +61,14 @@ ServerContent = React.createClass
 					</TouchableHighlight>
 				</View>
 				{@state.elements}
+				<View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+					<Text style={[styles.text, {padding: 10}]}>WHITEBOARD CHANNEL</Text>
+				</View>
+				<View flexDirection={'row'}>
+					<TouchableHighlight onPress={@selectChannel.bind(this, @state.channels.length)} style={styles.normal}>
+						<Text style={[styles.text, {padding: 12}]}>{'#whiteboard'}</Text>
+					</TouchableHighlight>
+				</View>
 			</ScrollView>
 		</View>
 

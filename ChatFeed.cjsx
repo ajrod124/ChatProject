@@ -7,6 +7,7 @@ ServerSettings = require './ServerSettings'
 ServerContent = require './ServerContent'
 ChatInput = require './ChatInput'
 TextElement = require './TextElement'
+WhiteboardContainer = require './WhiteboardContainer'
 urls = require './urls'
 
 bar = '   \u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af    '
@@ -33,6 +34,10 @@ ChatFeed = React.createClass
 			@counter = 0
 			@prevMessage = null
 			@populateText nextProps.channel
+
+	componentWillUnmount: ->
+		@ws.close()
+		@ws = null
 		
 	populateText: (channel) ->
 		messages = channel.messages
@@ -54,6 +59,8 @@ ChatFeed = React.createClass
 							userId: obj.userId
 							time: obj.time
 							message: obj.message
+				when 'paintEvent'
+					if @whiteboard? then @whiteboard.paintRemote obj
 				else
 					console.log 'Unexpected response from socket server: ', obj
 		@ws.onclose = (e) =>
@@ -109,9 +116,13 @@ ChatFeed = React.createClass
 			messages: array
 			textBoxes: array.map @renderRow
 
+	getWhiteboard: ->
+		if @props.whiteboard then <WhiteboardContainer ref={(ref) => @whiteboard = ref}/>
+
 	render: ->
 		<View style={styles.container}>
 			<Header name={@state.name} openLeft={@props.openLeft} openRight={@props.openRight} navigator={@props.navigator}/>
+			{@getWhiteboard()}
 			<ScrollView ref={(ref) => @messageBox = ref} onContentSizeChange={@scrollToBottom}>
 				{@state.textBoxes}
 			</ScrollView>

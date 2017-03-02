@@ -72,6 +72,15 @@ MainScene = React.createClass
 	closeRight: ->
 		@rightDrawer.close()
 
+	retrieveChannel: ->
+		if @state.selectedChannel is @state.channels.length
+			channel =
+				name: 'whiteboard'
+				messages: []
+			return channel;
+		else
+			@state.channels[@state.selectedChannel]
+
 	render: ->
 		if @state.users.length > 0 and @state.channels.length > 0
 			<Drawer
@@ -117,8 +126,9 @@ MainScene = React.createClass
 					side={'right'}
 				>
 					<ChatFeed 
+						whiteboard={@state.selectedChannel is @state.channels.length}
 						users={@state.users} 
-						channel={@state.channels[@state.selectedChannel]}
+						channel={@retrieveChannel()}
 						openLeft={@openLeft} 
 						openRight={@openRight} 
 						navigator={@props.navigator}

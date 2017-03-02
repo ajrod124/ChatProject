@@ -121,7 +121,29 @@
             padding: 4
           }
         ]
-      }, "+"))), this.state.elements));
+      }, "+"))), this.state.elements, React.createElement(View, {
+        "style": {
+          flexDirection: 'row',
+          justifyContent: 'space-between'
+        }
+      }, React.createElement(Text, {
+        "style": [
+          styles.text, {
+            padding: 10
+          }
+        ]
+      }, "WHITEBOARD CHANNEL")), React.createElement(View, {
+        "flexDirection": 'row'
+      }, React.createElement(TouchableHighlight, {
+        "onPress": this.selectChannel.bind(this, this.state.channels.length),
+        "style": styles.normal
+      }, React.createElement(Text, {
+        "style": [
+          styles.text, {
+            padding: 12
+          }
+        ]
+      }, '#whiteboard')))));
     }
   });
 

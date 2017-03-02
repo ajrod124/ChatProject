@@ -1,10 +1,11 @@
 React = require 'react'
 ReactNative = require 'react-native'
+Whiteboard = require './Whiteboard'
+Dimensions = require 'Dimensions'
 
-{Text, View, StyleSheet, TouchableHighlight, Image, WebView} = ReactNative
+{Text, View, StyleSheet, TouchableHighlight, Image} = ReactNative
 
 PinnedMessages = React.createClass
-	
 	render: ->
 		<View style={{flex: 1}}>
 			<View style={styles.header} flexDirection='row'>
@@ -50,3 +51,7 @@ styles = StyleSheet.create
 		height: 10
 
 module.exports = PinnedMessages
+
+###
+
+###
